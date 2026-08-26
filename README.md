@@ -11,6 +11,8 @@ A local-first, authenticated pull control plane for mixed x86-64, ARM64, ARMv7, 
 
 `run.sh` automatically repairs incomplete setup and opens the PySide6 control room. The GUI shows real worker resources, queued/active/terminal jobs, phases, attempts and bounded errors; it can start/stop the loopback hub, submit a job file, cancel selected work, refresh state, and run the isolated synthetic demo.
 
+On Debian/Ubuntu Linux, setup also installs `libegl1` when the PySide6 runtime is missing it; this may use `sudo` and remains visible in the terminal. Other Linux distributions receive an exact missing-runtime error instead of an incomplete setup marker.
+
 Command-line operation stays in `cli.sh`:
 
 ```bash

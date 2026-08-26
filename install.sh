@@ -13,6 +13,25 @@ printf '[DISCOVER] checking Python and project files\n'
 command -v python3 >/dev/null 2>&1 || { printf 'ERROR: Python 3.11+ is required.\n' >&2; exit 1; }
 python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)' || { printf 'ERROR: Python 3.11+ is required.\n' >&2; exit 1; }
 
+if [[ "$MODE" != '--worker-only' && "$(uname -s)" == 'Linux' ]] && ! ldconfig -p 2>/dev/null | grep -q 'libEGL\.so\.1'; then
+    printf '[INSTALL] PySide6 requires the system EGL runtime\n'
+    if command -v apt-get >/dev/null 2>&1; then
+        if [[ "$(id -u)" -eq 0 ]]; then
+            apt-get update
+            apt-get install -y --no-install-recommends libegl1
+        elif command -v sudo >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends libegl1
+        else
+            printf 'ERROR: install libegl1 with your system package manager, then rerun install.sh.\n' >&2
+            exit 1
+        fi
+    else
+        printf 'ERROR: libEGL.so.1 is missing; install your distribution EGL runtime, then rerun install.sh.\n' >&2
+        exit 1
+    fi
+fi
+
 printf '[INSTALL] creating or repairing the local virtual environment\n'
 python3 -m venv .venv
 if [[ "$MODE" == '--worker-only' ]]; then
