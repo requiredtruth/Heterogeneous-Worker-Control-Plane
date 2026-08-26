@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; Path('result.txt').write_text(Path('input.txt').read_text().upper())"
+  ],
+  "inputs": [
+    {
+      "path": "input.txt",
+      "source": "SYNTHETIC_INPUT.txt"
+    }
+  ],
+  "install_profiles": [],
+  "lease_seconds": 60,
+  "max_attempts": 2,
+  "min_disk_mb": 32,
+  "min_ram_mb": 64,
+  "name": "uppercase-synthetic-input",
+  "outputs": [
+    {
+      "max_bytes": 1048576,
+      "path": "result.txt"
+    }
+  ],
+  "required_architectures": [],
+  "required_capabilities": ["python"],
+  "timeout_seconds": 30
+}

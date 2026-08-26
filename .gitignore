@@ -1,0 +1,6 @@
+.venv/
+DATA/
+WORKER_DATA/
+worker.json
+__pycache__/
+*.py[cod]

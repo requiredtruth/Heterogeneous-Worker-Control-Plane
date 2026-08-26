@@ -1,0 +1,40 @@
+name: Confirmed-donation project direction
+description: Request a specific safe expansion after a confirmed public donation.
+title: "[funded direction] "
+body:
+  - type: dropdown
+    id: asset
+    attributes:
+      label: Asset
+      options: [Bitcoin, Ethereum/EVM, Dogecoin]
+    validations:
+      required: true
+  - type: input
+    id: network
+    attributes:
+      label: Exact network
+      placeholder: Bitcoin, Ethereum mainnet, or Dogecoin
+    validations:
+      required: true
+  - type: input
+    id: transaction
+    attributes:
+      label: Public transaction hash
+      description: Never post a private key, seed phrase, wallet signature, or login.
+    validations:
+      required: true
+  - type: textarea
+    id: direction
+    attributes:
+      label: Requested feature, test, documentation area, or project direction
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Terms
+      options:
+        - label: I understand this is not cryptographic proof of wallet ownership and a hash cannot be reused after attribution.
+          required: true
+        - label: I understand a donation does not purchase ownership, returns, a deadline, guaranteed delivery, or acceptance of unsafe or out-of-scope work.
+          required: true
