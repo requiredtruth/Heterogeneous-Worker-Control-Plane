@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "heterogeneous-worker-control-plane"
+version = "0.1.0"
+description = "Authenticated pull control plane for mixed x86, ARM, Android, and Termux workers"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+gui = ["PySide6>=6.7,<7"]
+
+[project.scripts]
+hwcp = "hwcp.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["hwcp*"]

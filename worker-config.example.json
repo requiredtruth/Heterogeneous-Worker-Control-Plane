@@ -1,0 +1,13 @@
+{
+  "allow_executables": ["python3"],
+  "ca_file": null,
+  "capabilities": ["python", "synthetic-fixtures"],
+  "enrollment_token_file": "DATA/enrollment.token",
+  "install_profiles": {},
+  "max_artifact_bytes": 1073741824,
+  "poll_seconds": 2,
+  "server_url": "http://127.0.0.1:8789",
+  "worker_id": "worker-example",
+  "worker_token_file": "WORKER_DATA/worker.token",
+  "workspace_dir": "WORKER_DATA/runs"
+}

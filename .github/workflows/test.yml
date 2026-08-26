@@ -1,0 +1,25 @@
+name: test
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: bash -n install.sh run.sh cli.sh
+      - run: python -m compileall -q hwcp tests
+      - run: python -m unittest discover -s tests -v
+      - run: python -m hwcp.cli demo
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libegl1
+      - run: python -m pip install --disable-pip-version-check -e '.[gui]'
+      - run: QT_QPA_PLATFORM=offscreen HWCP_GUI_SMOKE=1 python -m hwcp.gui
